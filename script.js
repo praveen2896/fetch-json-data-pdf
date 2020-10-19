@@ -1,33 +1,37 @@
 const Mustache = require("mustache"); 
-var fs = require('fs')
-var createHTML = require('create-html')
-var pdf = require('html-pdf');
+const fs = require('fs')
+const createHTML = require('create-html')
+const pdf = require('html-pdf');
 
  
 main();
 async function main(){
-    var myData;
-    var data;
+    let myData;
+    let data;
     myData=require("./twit_thread.json"); 
     data= await myData;
     console.log(data);
-    var tweetData={
+    let tweetData={
       tweets:data
     }
     console.log(tweetData);
-    var tweetTemplate='<div> {{#tweets}}<h2>Hello {{tweet}}</h2> <br></br> {{name}}{{/tweets}} </div>'
-    var info=Mustache.render(tweetTemplate,tweetData);
-    console.log("HTML CODE-->",info) 
-    var html = createHTML({
+    //template for Mustache ,
+    let tweetTemplate='<div> {{#tweets}}<h2>Hello {{tweet}}</h2> <br></br> {{name}}{{/tweets}} </div>'
+    //render the View data in the Mustache template
+    let info=Mustache.render(tweetTemplate,tweetData);
+    //console.log("HTML CODE-->",info) 
+    //create an HTML
+    let htmlContent = createHTML({
         title: 'Twindle',
         body:info
     })
+    console.log("HTML ",htmlContent);
     // fs.writeFile('output.html', html, function (err) {
     //   if (err) console.log(err)
     // })
-    var options = { format: 'Letter' };
+    let options = { format: 'Letter' };
     //convert the HTML Content/HTML Page to PDF
-    pdf.create(html, options).toFile('./output.pdf', function(err, res) {
+    pdf.create(htmlContent, options).toFile('./output.pdf', function(err, res) {
         if (err) return console.log(err);
         console.log("file Path"+res.filename);
     });
