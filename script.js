@@ -27,10 +27,10 @@ async function main(){
       //   if (err) console.log(err)
       // })
       var options = { format: 'Letter' };
-      //convert 
+      //convert the HTML Content/HTML Page to PDF
       pdf.create(html, options).toFile('./output.pdf', function(err, res) {
         if (err) return console.log(err);
-        console.log(res); // { filename: '/app/businesscard.pdf' }
+        console.log(res);
       });
       
          
