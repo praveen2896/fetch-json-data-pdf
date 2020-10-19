@@ -1,7 +1,7 @@
-const Mustache = require("mustache"); 
+const Mustache = require("mustache")
 const fs = require('fs')
 const createHTML = require('create-html')
-const pdf = require('html-pdf');
+const pdf = require('html-pdf')
 
  
 main();
