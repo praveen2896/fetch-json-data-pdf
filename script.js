@@ -1,11 +1,8 @@
 const Mustache = require("mustache"); 
 var fs = require('fs')
 var createHTML = require('create-html')
-var html_to_pdf = require('html-pdf-node');
-var path = require('path');
-var fs = require('fs');
+//var fs = require('fs');
 var pdf = require('html-pdf');
-var html = fs.readFileSync('./output.html', 'utf8');
 
  
 main();
